@@ -5,6 +5,7 @@ class LoadingStrategy(Enum):
     READ = 'read'
     WEB = 'web'
     DOCX = 'docx'
+    CSV = 'csv'
 
 def get_document_loader(loader_strategy: str):
     if loader_strategy == LoadingStrategy.LAYOUT.value:
@@ -19,6 +20,9 @@ def get_document_loader(loader_strategy: str):
     elif loader_strategy == LoadingStrategy.DOCX.value:
         from .WordDocument import WordDocumentLoading
         return WordDocumentLoading()
+    elif loader_strategy == LoadingStrategy.CSV.value:
+        from .Csv import CSVDocumentLoading
+        return CSVDocumentLoading()
     else:
         raise Exception(f"Unknown loader strategy: {loader_strategy}")    
     
